@@ -1,0 +1,43 @@
+/*
+ *= require jquery.ui.core
+ *= require jquery.dd
+ *= require bootstrap
+ *= require bootstrap-responsive
+ *= require font-awesome
+ *= require silk-icons-sprite
+ *= require_self
+ */
+
+@import 'bootstrap/variables';
+@import 'bootstrap/_mixins';
+
+.navbar .container {
+	width: 940px;
+}
+
+.brand {
+	color: #fff !important;
+}
+
+body {
+	padding-top: 60px;
+}
+
+input {
+	@include input-block-level();
+}
+
+.center {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.full {
+	width: 100%;
+}
+
+.form-compact .control-group {
+	margin-top: 0;
+	margin-bottom: 5px;
+}

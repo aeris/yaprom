@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3150958359">
+    <data-source source="LOCAL" name="Rails yaprom: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="b94db7a4-38c1-4ecc-bb2e-b0c87a0cf7ec">
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:yaprom_production</jdbc-url>
+      <user-name>yaprom</user-name>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar!/</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails yaprom: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="da32be85-bafd-4491-934a-4aa1fedc783b">
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../nvinot/Workspace/Viveris/yaprom/db/test.sqlite3</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/xerial-sqlite-license_2.txt</url>
+        </library>
+        <library>
+          <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/sqlite-jdbc-3.7.2_2.jar!/</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails yaprom: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="7d5d2fbf-10d8-4597-ac3b-ac03b03dc694">
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../nvinot/Workspace/Viveris/yaprom/db/development.sqlite3</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/xerial-sqlite-license_2.txt</url>
+        </library>
+        <library>
+          <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/sqlite-jdbc-3.7.2_2.jar!/</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+

@@ -1,0 +1,60 @@
+<% if @user.errors.any? %>
+	<div class="row-fluid">
+		<div class="alert alert-error span6 offset3">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong><%= pluralize @user.errors.count, 'error' %> prohibited
+				this user from being saved :</strong>
+			<ul>
+				<% @user.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+<% end %>
+<%= form_for @user, :url => users_path, html: { class: %w(well form-horizontal span5 center) } do |f| %>
+	<%= field_set_tag 'Sign in' do %>
+		<div class="control-group">
+			<%= f.label :common_name, 'Common name', class: :'control-label' %>
+			<div class="controls">
+				<%= f.text_field :common_name, placeholder: 'John', required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :surname, 'Surname', class: :'control-label' %>
+			<div class="controls">
+				<%= f.text_field :surname, placeholder: 'Doe', required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :uid, 'UID', class: :'control-label' %>
+			<div class="controls">
+				<%= f.text_field :uid, placeholder: 'jdoe', required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :password, 'Password', class: :'control-label' %>
+			<div class="controls">
+				<%= f.password_field :password, required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= label_tag :password_confirmation, 'Confirm password', class: :'control-label' %>
+			<div class="controls">
+				<%= f.password_field :password_confirmation, required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :email, 'Email', class: :'control-label' %>
+			<div class="controls">
+				<%= f.email_field :email, placeholder: 'john.doe@domain.org', required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.submit 'Sign in', class: %w(btn btn-primary pull-right) %>
+			</div>
+		</div>
+		<%= hidden_field_tag :from, request.path %>
+	<% end %>
+<% end %>

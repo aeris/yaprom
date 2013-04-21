@@ -1,0 +1,13 @@
+default: &default
+  registration: true
+  email:
+    domain: 'imirhil.fr'
+
+test:
+  <<: *default
+
+development:
+  <<: *default
+
+production:
+  <<: *default

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Yaprom</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%= stylesheet_link_tag 'application', media: 'all' %>
+		<!--[if lt IE 8]>
+			<%= stylesheet_link_tag 'font-awesome-ie7.min.css', media: 'all' %>
+		<![endif]-->
+		<%= javascript_include_tag 'application' %>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<%= csrf_meta_tags %>
+		<%= include_controller_meta_tags %>
+	</head>
+	<body>
+		<%= render 'headers' %>
+		<%= render 'flashs' %>
+		<div class="container">
+			<%= yield %>
+		</div>
+	</body>
+</html>
