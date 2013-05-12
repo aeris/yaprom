@@ -1,0 +1,35 @@
+<div class="row-fluid">
+	<legend>
+		My projects
+		<%= link_to '#project-modal', role: :button, 'data-toggle' => :modal do
+			image_tag 'empty.png', alt: 'Create project', class: 'sprite-silk-database_add'
+		end %>
+	</legend>
+	<table class="table-striped table-bordered full">
+		<thead>
+		<tr>
+			<th style="width: 0;"/>
+			<th colspan="2">Project</th>
+			<th style="width: 0;"/>
+		</tr>
+		</thead>
+		<tbody>
+		<% @me.projects.each do |project| %>
+			<tr>
+				<td style="white-space: nowrap;">
+					<%= image_tag "#{project.scm}-tiny.png", alt: project.scm %>
+					<%= image_tag 'empty.png', alt: 'Owner', class: "sprite-silk-#{project.owner == @me ? 'award_star_gold_1' : 'empty'}" %>
+					<%= image_tag 'empty.png', alt: 'Private', class: "sprite-silk-#{project.private ? 'lock' : 'empty'}" %>
+				</td>
+				<td><%= project.name %></td>
+				<td><%= text_field_tag nil, project.repo_for(@me).clone_command, readonly: true, class: %w(cmd) %></td>
+				<td>
+					<%= link_to project_path project do
+						image_tag 'empty.png', alt: 'Go to project', class: 'sprite-silk-database_go'
+					end %>
+				</td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>

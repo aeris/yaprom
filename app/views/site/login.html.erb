@@ -1,13 +1,13 @@
-<%= form_tag login_path, class: %w(well form-horizontal span4 center) do |f| %>
+<%= form_tag login_path, class: %w(well form-horizontal form-compact span4 center) do |f| %>
 	<%= field_set_tag 'Authentication' do %>
 		<div class="control-group">
-			<%= label_tag :login, 'Login', class: :'control-label' %>
+			<%= label_tag :login, 'Login', class: %w(control-label) %>
 			<div class="controls">
 				<%= text_field_tag :login, nil, required: true %>
 			</div>
 		</div>
 		<div class="control-group">
-			<%= label_tag :password, 'Password', class: :'control-label' %>
+			<%= label_tag :password, 'Password', class: %w(control-label) %>
 			<div class="controls">
 				<%= password_field_tag :password, nil, required: true %>
 			</div>

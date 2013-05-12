@@ -11,20 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421120605) do
+ActiveRecord::Schema.define(:version => 20130427214800) do
+
+  create_table "git_projects", :primary_key => "project_id", :force => true do |t|
+  end
+
+  create_table "git_repos", :primary_key => "repo_id", :force => true do |t|
+    t.integer "owner_id"
+    t.integer "project_id", :null => false
+    t.integer "origin_id"
+  end
 
   create_table "projects", :force => true do |t|
-    t.string   "name",        :null => false
-    t.string   "uid",         :null => false
+    t.string   "subtype",                        :null => false
+    t.string   "name",                           :null => false
+    t.string   "uid",                            :null => false
     t.string   "description"
-    t.string   "scm",         :null => false
-    t.integer  "owner_id",    :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.boolean  "private",     :default => false, :null => false
+    t.integer  "owner_id",                       :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "projects", ["name"], :name => "index_projects_on_name", :unique => true
   add_index "projects", ["uid"], :name => "index_projects_on_uid", :unique => true
+
+  create_table "repos", :force => true do |t|
+    t.string   "uuid",         :null => false
+    t.string   "subtype",      :null => false
+    t.string   "virtual_path", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "repos", ["uuid"], :name => "index_repos_on_uuid", :unique => true
 
   create_table "ssh_keys", :force => true do |t|
     t.integer  "user_id",     :null => false
@@ -38,6 +58,13 @@ ActiveRecord::Schema.define(:version => 20130421120605) do
   end
 
   add_index "ssh_keys", ["user_id"], :name => "index_ssh_keys_on_user_id"
+
+  create_table "svn_projects", :primary_key => "project_id", :force => true do |t|
+  end
+
+  create_table "svn_repos", :primary_key => "repo_id", :force => true do |t|
+    t.integer "project_id", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "uid",                            :null => false

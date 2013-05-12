@@ -3,12 +3,12 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'thin'
 
-group :production do
-	gem 'pg'
-end
+gem 'pg'
 
-group :test, :development do
-	gem 'sqlite3'
+group :development do
+	gem 'better_errors'
+	gem 'binding_of_caller'
+	gem 'quiet_assets'
 end
 
 # Gems used only for assets and not required
@@ -28,6 +28,9 @@ end
 
 gem 'net-ldap'
 gem 'net-ssh'
+gem 'multiple_table_inheritance'
+gem 'grit'
+gem 'resque', '~> 2.0.0.pre.1'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,14 +1,16 @@
 /*
  *= require jquery.ui.core
+ *= require jquery.ui.autocomplete
  *= require jquery.dd
  *= require bootstrap
  *= require bootstrap-responsive
  *= require font-awesome
+ *= require inputosaurus
  *= require silk-icons-sprite
  *= require_self
  */
 
-@import 'bootstrap/variables';
+@import 'bootstrap/_variables';
 @import 'bootstrap/_mixins';
 
 .navbar .container {
@@ -23,14 +25,15 @@ body {
 	padding-top: 60px;
 }
 
-input {
+input:not([type='checkbox']):not([type='submit']),
+textarea {
 	@include input-block-level();
 }
 
 .center {
-	float: none;
-	margin-left: auto;
-	margin-right: auto;
+	float: none !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
 }
 
 .full {
@@ -40,4 +43,41 @@ input {
 .form-compact .control-group {
 	margin-top: 0;
 	margin-bottom: 5px;
+}
+
+th, td {
+	padding: 2px 3px;
+}
+
+input.cmd {
+	font-family: Monaco, "Liberation Mono", Courier, monospace;
+	font-size: 12px;
+	margin: 0;
+	cursor: text;
+}
+
+.inputosaurus-container {
+	width: 100%;
+	@include font-shorthand($baseFontSize, normal, $baseLineHeight);
+	font-family: $baseFontFamily;
+	display: inline-block;
+	margin-bottom: $baseLineHeight / 2;;
+	font-size: $baseFontSize;
+	line-height: $baseLineHeight;
+	color: $gray;
+	@include border-radius($inputBorderRadius);
+	vertical-align: middle;
+
+	background-color: $inputBackground;
+	border: 1px solid $inputBorder;
+	@include box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+	@include transition(border linear .2s, box-shadow linear .2s);
+
+	// Focus state
+	&:focus {
+		border-color: rgba(82,168,236,.8);
+		outline: 0;
+		outline: thin dotted \9; /* IE6-9 */
+		@include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6));
+	}
 }

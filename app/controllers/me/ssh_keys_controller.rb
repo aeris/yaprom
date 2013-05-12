@@ -9,9 +9,9 @@ class Me::SshKeysController < ApplicationController
 			file = params[:ssh_key_file]
 			@content = file.read if file
 		end
-		SshKey.create @me, @content
+		@key = SshKey.create @me, @content
 		flash[:success] = 'SSH key created successfully'
-		redirect_to_with_from me_path
+		redirect_to me_path
 	rescue Exception => e
 		flash[:error] = e.message
 		render :new
@@ -25,6 +25,6 @@ class Me::SshKeysController < ApplicationController
 			ssh_key.destroy
 			flash[:success] = 'SSH key deleted successfully'
 		end
-		redirect_to_with_from me_path
+		redirect_to me_path
 	end
 end

@@ -1,25 +1,25 @@
-<%= form_for @user, :url => admin_users_path, html: { class: [:'form-horizontal', (defined?(span) ? span : :span5), (defined?(offset) ? offset : nil)] } do |f| %>
+<%= form_for (@user || User.new(password: User.generate_password)), url: admin_users_path, html: { class: %w(form-horizontal) + clazz } do |f| %>
 	<%= field_set_tag 'New user' do %>
 		<div class="control-group">
-			<%= f.label :common_name, 'Common name', class: :'control-label' %>
+			<%= f.label :common_name, 'Common name', class: %w(control-label) %>
 			<div class="controls">
 				<%= f.text_field :common_name, placeholder: 'John', required: true %>
 			</div>
 		</div>
 		<div class="control-group">
-			<%= f.label :surname, 'Surname', class: :'control-label' %>
+			<%= f.label :surname, 'Surname', class: %w(control-label) %>
 			<div class="controls">
 				<%= f.text_field :surname, placeholder: 'Doe', required: true %>
 			</div>
 		</div>
 		<div class="control-group">
-			<%= f.label :uid, 'UID', class: :'control-label' %>
+			<%= f.label :uid, 'UID', class: %w(control-label) %>
 			<div class="controls">
 				<%= f.text_field :uid, placeholder: 'jdoe', required: true %>
 			</div>
 		</div>
 		<div class="control-group">
-			<%= f.label :password, 'Password', class: :'control-label' %>
+			<%= f.label :password, 'Password', class: %w(control-label) %>
 			<div class="controls">
 				<%= f.text_field :password, required: true %>
 			</div>
@@ -27,22 +27,22 @@
 		<div class="control-group">
 			<div class="controls">
 				<label class="checkbox">
-					<%= check_box_tag :send_password_by_mail %>
+					<%= check_box_tag :send_password_by_mail, nil, params[:send_password_by_mail] %>
 					Send password by mail
 				</label>
 			</div>
 		</div>
 		<div class="control-group">
-			<%= f.label :email, 'Email', placeholder: "john.doe@#{YamlConfig['email.domain']}", class: :'control-label' %>
+			<%= f.label :email, 'Email', class: %w(control-label) %>
 			<div class="controls">
-				<%= f.email_field :email, required: true %>
+				<%= f.email_field :email, placeholder: "john.doe@#{YamlConfig['email.domain']}", required: true,
+								  data: { domain: YamlConfig['email.domain'] }  %>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
-				<%= f.submit class: :btn %>
+				<%= f.submit class: %(btn btn-primary pull-right) %>
 			</div>
 		</div>
-		<%= hidden_field_tag :from, request.path %>
 	<% end %>
 <% end %>

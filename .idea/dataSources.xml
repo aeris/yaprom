@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3150958359">
-    <data-source source="LOCAL" name="Rails yaprom: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="b94db7a4-38c1-4ecc-bb2e-b0c87a0cf7ec">
+  <component name="DataSourceManagerImpl" format="xml" hash="276118543">
+    <data-source source="LOCAL" name="Rails yaprom: default" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="8d4acdfb-164c-49be-b4dd-3ad7a9f3aaa5">
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:yaprom_production</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/yaprom</jdbc-url>
       <user-name>yaprom</user-name>
+      <user-password>dfd3dfcbdfdadfd8dfc5dfc7</user-password>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -14,27 +15,58 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails yaprom: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="da32be85-bafd-4491-934a-4aa1fedc783b">
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../nvinot/Workspace/Viveris/yaprom/db/test.sqlite3</jdbc-url>
+    <data-source source="LOCAL" name="Rails yaprom: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="b645b9b4-f273-40b9-8d8b-13cec69f7151">
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/yaprom</jdbc-url>
+      <user-name>yaprom</user-name>
+      <user-password>dfd3dfcbdfdadfd8dfc5dfc7</user-password>
       <libraries>
         <library>
-          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/xerial-sqlite-license_2.txt</url>
+          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
         </library>
         <library>
-          <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/sqlite-jdbc-3.7.2_2.jar!/</url>
+          <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar!/</url>
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails yaprom: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="7d5d2fbf-10d8-4597-ac3b-ac03b03dc694">
+    <data-source source="LOCAL" name="Rails yaprom: test" product="SQLite" version="3.7.2" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" uuid="e20d2e59-8bde-4f49-8743-683d6ad8e9b9">
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../nvinot/Workspace/Viveris/yaprom/db/development.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/test.sqlite3</jdbc-url>
       <libraries>
         <library>
-          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/xerial-sqlite-license_2.txt</url>
+          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/xerial-sqlite-license.txt</url>
         </library>
         <library>
-          <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/sqlite-jdbc-3.7.2_2.jar!/</url>
+          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/sqlite-jdbc-3.7.2.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails yaprom: postgresql" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="d5300fe0-d1ee-47fd-8439-a98ca2c3be5d">
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/yaprom</jdbc-url>
+      <user-name>yaprom</user-name>
+      <user-password>dfd3dfcbdfdadfd8dfc5dfc7</user-password>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails yaprom: production" product="PostgreSQL" version="9.1.9" jdbc-version="3.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.1 JDBC3 (build 901)" uuid="4e80fb47-8981-4719-a419-f7fe3fd788df">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/yaprom</jdbc-url>
+      <user-name>yaprom</user-name>
+      <user-password>dfd3dfcbdfdadfd8dfc5dfc7</user-password>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar</url>
         </library>
       </libraries>
     </data-source>

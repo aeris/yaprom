@@ -1,9 +1,10 @@
 ###
 //= require jquery
+//= require jquery.dd
 //= require jquery_ujs
 //= require jquery.ui.core
 //= require jquery.ui.widget
-//= require jquery.dd
+//= require jquery.ui.autocomplete
 //= require bootstrap-dropdown
 //= require bootstrap-alert
 //= require bootstrap-transition

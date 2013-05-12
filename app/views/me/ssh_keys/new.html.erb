@@ -1,22 +1,2 @@
-<%= form_tag me_ssh_keys_path, multipart: true, class: %w(well form-horizontal span5) do %>
-	<fieldset>
-		<legend>Add SSH key</legend>
-		<div class="control-group">
-			<%= label_tag :ssh_key_content, 'SSH key', class: :'control-label' %>
-			<div class="controls">
-				<%= text_area_tag :ssh_key_content, @content, placeholder: 'Paste your SSH key here' %>
-			</div>
-		</div>
-		<div class="control-group">
-			<%= label_tag :ssh_key_file, 'Upload file', class: :'control-label' %>
-			<div class="controls">
-				<%= file_field_tag :ssh_key_file, title: 'Browse' %>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				<%= submit_tag 'Submit', class: [:btn, :'btn-primary'] %>
-			</div>
-		</div>
-	</fieldset>
-<% end %>
+<%= render 'application/errors', object: @key %>
+

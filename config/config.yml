@@ -1,7 +1,12 @@
 default: &default
+  url: 'http://localhost:3000'
+  ssh: 'git@forge'
   registration: true
   email:
     domain: 'imirhil.fr'
+  git:
+    repositories: '/tmp/git/repositories'
+    authorized_keys: '/tmp/git/authorized_keys'
 
 test:
   <<: *default
@@ -11,3 +16,7 @@ development:
 
 production:
   <<: *default
+  url: 'https://forge/'
+  git:
+    repositories: '/srv/scm/git'
+    authorized_keys: '/srv/scm/git/.ssh/authorized_keys'

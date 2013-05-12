@@ -1,0 +1,44 @@
+<%= render 'application/errors', object: @project %>
+<%= form_for @project, as: :project, url: projects_path, html: { class: %w(well form-horizontal form-compact span5 center) } do |f| %>
+	<%= field_set_tag 'New project' do %>
+		<div class="control-group">
+			<%= f.label :name, 'Name', class: %w(control-label) %>
+			<div class="controls">
+				<%= f.text_field :name, required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :uid, 'UID', class: %w(control-label) %>
+			<div class="controls">
+				<%= f.text_field :uid, required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :description, 'Description', class: %w(control-label) %>
+			<div class="controls">
+				<%= f.text_area :description, rows: 5 %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :scm, 'SCM', class: %w(control-label) %>
+			<div class="controls">
+				<%= f.select :scm, [['Git', :git, 'data-image' => image_path('git.png')],
+									['SVN', :svn, 'data-image' => image_path('svn.png')]] %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.label :private, class: %w(checkbox) do %>
+					<%= f.check_box :private %>
+					Private
+				<% end %>
+			</div>
+		</div>
+		<%= f.hidden_field :owner, value: @me.uid %>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.submit 'Sign in', class: %w(btn btn-primary pull-right) %>
+			</div>
+		</div>
+	<% end %>
+<% end %>

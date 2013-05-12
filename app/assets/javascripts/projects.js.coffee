@@ -1,3 +1,14 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+	$("#project_scm").msDropDown()
+	$("#project_name").change () ->
+		uid = $("#project_name").val().toLowerCase().replace /\s+/g, "-"
+		$("#project_uid").val uid
+
+	$("input.git").focus () ->
+		$(this).select()
+
+	$("#members").inputosaurus {
+		autoCompleteSource : (request, response) ->
+			$.get "/users/find", { find: request.term }, (datas) ->
+				response datas
+	}

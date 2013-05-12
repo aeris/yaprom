@@ -9,6 +9,9 @@
 			</ul>
 			<ul class="nav pull-right">
 				<% if @me %>
+					<% if @me.admin? %>
+					<li><%= link_to 'Admin', admin_path %></li>
+					<% end %>
 					<li><%= link_to "~#{@me.uid}", me_path %></li>
 					<li>
 						<%= link_to logout_path do %>
@@ -16,20 +19,9 @@
 							Logout
 						<% end %>
 					</li>
-					<% if @me.admin? %>
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown">
-								Admin<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><%= link_to 'Users', admin_users_path %></li>
-								<li><%= link_to 'Projects', admin_projects_path %></li>
-							</ul>
-						</li>
-					<% end %>
 				<% else %>
 					<% if YamlConfig['registration'] %>
-						<li><%= link_to 'Sign in', new_users_path %></li>
+						<li><%= link_to 'Sign in', new_user_path %></li>
 					<% end %>
 					<li>
 						<%= link_to login_path do %>

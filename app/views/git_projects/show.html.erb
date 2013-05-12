@@ -1,0 +1,55 @@
+<%= render 'projects/add_members' %>
+<legend>
+	<%= image_tag 'empty.png', alt: 'Project', class: 'sprite-silk-database' %>
+	<%= @project.name %>
+</legend>
+<table class="table-striped table-bordered span5">
+	<thead>
+		<tr>
+			<th colspan="3"/>
+			Members
+			<%= link_to '#members-modal', role: :button, 'data-toggle' => :modal do
+				image_tag 'empty.png', alt: 'Add member', class: 'sprite-silk-user_add'
+			end %>
+			</th>
+		</tr>
+		<tr>
+			<th style="width: 0;"/>
+			<th>User</th>
+			<th>Repo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="upstream">
+			<td style="white-space: nowrap;">
+				<%= image_tag 'empty.png', alt: 'Project', class: 'sprite-silk-star' %>
+			</td>
+			<td>Upstream</td>
+			<td><%= text_field_tag nil, @project.upstream.clone_command, readonly: true, class: %w(cmd) %></td>
+		</tr>
+		<% @project.users.order(:uid).each do |user|
+			repo = GitRepo.where(project_id: @project, owner_id: user).first
+			if user == @me
+				alt = 'Me'
+				clazz = 'me'
+				img = '_green'
+			elsif @project.owner == user
+				alt = 'Owner'
+				clazz = 'owner'
+				img = '_red'
+			else
+				alt = 'User'
+				clazz = 'user'
+				img = ''
+			end
+		%>
+		<%= content_tag :tr, class: clazz do %>
+			<td style="white-space: nowrap;">
+				<%= image_tag 'empty.png', alt: alt, class: "sprite-silk-user#{img}" %>
+			</td>
+			<td><%= user.name %></td>
+			<td><%= text_field_tag nil, repo.clone_command, readonly: true, class: %w(cmd) %></td>
+		<% end
+		end %>
+	</tbody>
+</table>

@@ -1,5 +1,5 @@
 class SiteController < ApplicationController
-	skip_before_filter :require_login, :only => [:login, :auth]
+	skip_before_filter :require_login, only: [:login, :auth]
 
 	def index
 	end
@@ -8,11 +8,11 @@ class SiteController < ApplicationController
 	end
 
 	def auth
-		user = User.where(uid: params[:login], password: User.hash_password(params[:password])).first
+		user = Rails.configuration.auth_provider.authenticate params[:login], params[:password]
 		if user
 			session[:me] = user.id
 			flash[:success] = 'Login success'
-			redirect_to_with_from me_path
+			redirect_to me_path
 		else
 			flash[:error] = 'Authentication error'
 			redirect_to :login

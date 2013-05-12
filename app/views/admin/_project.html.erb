@@ -1,0 +1,49 @@
+<%= form_for @project || Project.new, as: :project, url: admin_projects_path, html: { class: %w(form-horizontal) + clazz } do |f| %>
+	<%= field_set_tag 'New project' do %>
+		<div class="control-group">
+			<%= f.label :name, 'Name', class: %w(control-label) %>
+			<div class="controls">
+				<%= f.text_field :name, placeholder: 'Project name', required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :uid, 'UID', class: %w(control-label) %>
+			<div class="controls">
+				<%= f.text_field :uid, placeholder: 'project-name', required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :description, 'Description', class: %w(control-label) %>
+			<div class="controls">
+				<%= f.text_area :description, placeholder: 'Description of the project', rows: 5 %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= label_tag :scm, 'SCM', class: %w(control-label) %>
+			<div class="controls">
+				<%= select_tag 'project[scm]', options_for_select(
+						[['Git', :git, 'data-image' => image_path('git.png')],
+						 ['SVN', :svn, 'data-image' => image_path('svn.png')]]) %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.label :private, class: %w(checkbox) do %>
+					<%= f.check_box :private %>
+					Private
+				<% end %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :owner, 'Owner', class: %w(control-label) %>
+			<div class="controls">
+				<%= f.text_field :owner, placeholder: 'jdoe', required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.submit class: %(btn btn-primary pull-right) %>
+			</div>
+		</div>
+	<% end %>
+<% end %>

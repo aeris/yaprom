@@ -1,0 +1,14 @@
+<legend class="span6 center">
+	Recreated projects
+</legend>
+<table class="table-striped table-bordered span6 center">
+	<tbody>
+	<% @created.each do |repo| %>
+		<%= content_tag :tr do %>
+			<td>
+				<%= repo.virtual_path %>
+			</td>
+		<% end
+	end %>
+	</tbody>
+</table>

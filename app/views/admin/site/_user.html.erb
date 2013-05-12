@@ -1,0 +1,48 @@
+<%= form_for (@user || User.new(password: User.generate_password)), url: admin_users_path, html: { class: %w(form-horizontal) + clazz } do |f| %>
+	<%= field_set_tag 'New user' do %>
+		<div class="control-group">
+			<%= f.label :common_name, 'Common name', class: :'control-label' %>
+			<div class="controls">
+				<%= f.text_field :common_name, placeholder: 'John', required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :surname, 'Surname', class: :'control-label' %>
+			<div class="controls">
+				<%= f.text_field :surname, placeholder: 'Doe', required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :uid, 'UID', class: :'control-label' %>
+			<div class="controls">
+				<%= f.text_field :uid, placeholder: 'jdoe', required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :password, 'Password', class: :'control-label' %>
+			<div class="controls">
+				<%= f.text_field :password, required: true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox">
+					<%= check_box_tag :send_password_by_mail, nil, params[:send_password_by_mail] %>
+					Send password by mail
+				</label>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :email, 'Email', class: :'control-label' %>
+			<div class="controls">
+				<%= f.email_field :email, placeholder: "john.doe@#{YamlConfig['email.domain']}", required: true,
+								  data: { domain: YamlConfig['email.domain'] }  %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.submit class: %(btn btn-primary pull-right) %>
+			</div>
+		</div>
+	<% end %>
+<% end %>

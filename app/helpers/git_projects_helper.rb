@@ -1,0 +1,2 @@
+module GitProjectsHelper
+end

@@ -1,0 +1,11 @@
+<div class="row-fluid">
+	<div class="span6">
+		<%= render 'project', clazz: %w(full) %>
+		<%= field_set_tag 'Create missing repos' do %>
+			<%= link_to admin_create_missing_path do %>
+				<button class="btn btn-primary pull-right">Create missing</button>
+			<% end %>
+		<% end %>
+	</div>
+	<%= render 'user', clazz: %w(span6) %>
+</div>

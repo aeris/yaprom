@@ -1,104 +1,11 @@
-<div id="ssh-key-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3>Add SSH key</h3>
-	</div>
-	<%= form_tag me_ssh_keys_path, multipart: true, class: %w(form-horizontal) do %>
-		<div class="modal-body">
-				<div class="control-group">
-					<%= label_tag :ssh_key_content, 'SSH key', class: :'control-label' %>
-					<div class="controls">
-						<%= text_area_tag :ssh_key_content, @content, placeholder: 'Paste your SSH key here' %>
-					</div>
-				</div>
-				<div class="control-group">
-					<%= label_tag :ssh_key_file, 'Upload file', class: :'control-label' %>
-					<div class="controls">
-						<%= file_field_tag :ssh_key_file, title: 'Browse' %>
-					</div>
-				</div>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-			<input type="submit" class="btn btn-primary" value="Add"/>
-		</div>
-	<% end %>
-</div>
+<%= render 'add_ssh-key' %>
+<%= render 'create_project' %>
 <div class="row-fluid">
 	<div class="span5">
-		<legend>
-			My projects
-		</legend>
-		<table class="table-striped table-bordered full">
-			<thead>
-			<tr>
-				<th>Project</th>
-				<th/>
-			</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+		<%= render 'list_projects' %>
 	</div>
 	<div class="span7">
-		<div class="row-fluid">
-			<%= form_tag me_password_path, class: %w(form-horizontal form-compact span8) do %>
-				<%= field_set_tag 'Change password' do %>
-					<div class="control-group">
-						<%= label_tag :password_current, 'Current password', class: :'control-label' %>
-						<div class="controls">
-							<%= password_field_tag :password_current, nil, placeholder: 'Current password', required: true %>
-						</div>
-					</div>
-					<div class="control-group">
-						<%= label_tag :password_new, 'New password', class: :'control-label' %>
-						<div class="controls">
-							<%= password_field_tag :password_new, nil, placeholder: 'New password', required: true %>
-						</div>
-					</div>
-					<div class="control-group">
-						<%= label_tag :password_confirm, 'Confirm password', class: :'control-label' %>
-						<div class="controls">
-							<%= password_field_tag :password_confirm, nil, placeholder: 'Confirm password', required: true %>
-						</div>
-					</div>
-					<%= submit_tag 'Change password', class: %w(btn btn-danger pull-right) %>
-				<% end
-			end %>
-		</div>
-		<div class="row-fluid">
-			<div class="full">
-				<legend>
-					SSH keys
-					<%= link_to '#ssh-key-modal', role: :button, 'data-toggle' => :modal do
-						image_tag 'empty.png', alt: 'Add SSH key', class: 'sprite-silk-key_add'
-					end %>
-				</legend>
-				<table class="table-striped table-bordered full">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Fingerprint</th>
-							<th>Algorithm</th>
-							<th>Size</th>
-							<th/>
-						</tr>
-					</thead>
-					<tbody>
-					<% @me.ssh_keys.each do | key | %>
-						<tr>
-							<td><%= key.comment %></td>
-							<td><%= key.fingerprint %></td>
-							<td><%= key.key_type %></td>
-							<td><%= key.size %></td>
-							<td>
-								<%= image_tag 'empty.png', alt: 'Delete SSH key', class: 'sprite-silk-key_delete' %>
-							</td>
-						</tr>
-					<% end %>
-					</tbody>
-				</table>
-			</div>
-		</div>
+		<%= render 'change_password' %>
+		<%= render 'list_ssh_keys' %>
 	</div>
 </div>

@@ -1,0 +1,34 @@
+<div class="row-fluid">
+	<legend>
+		SSH keys
+		<%= link_to '#ssh-key-modal', role: :button, 'data-toggle' => :modal do
+			image_tag 'empty.png', alt: 'Add SSH key', class: 'sprite-silk-key_add'
+		end %>
+	</legend>
+	<table class="table-striped table-bordered full">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>Fingerprint</th>
+			<th>Algorithm</th>
+			<th>Size</th>
+			<th style="width: 0;"/>
+		</tr>
+		</thead>
+		<tbody>
+		<% @me.ssh_keys.each do |key| %>
+			<tr>
+				<td><%= key.comment %></td>
+				<td><%= key.fingerprint %></td>
+				<td><%= key.key_type %></td>
+				<td><%= key.size %></td>
+				<td>
+					<%= link_to me_ssh_key_path(key), method: :delete, confirm: 'Are you sure ?' do
+						image_tag 'empty.png', alt: 'Delete SSH key', class: 'sprite-silk-key_delete'
+					end %>
+				</td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>

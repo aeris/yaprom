@@ -63,9 +63,5 @@ module Yaprom
 		config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
 		#config.auth_provider = AuthProvider::DatabaseProvider.new
-		config.auth_provider = AuthProvider::LdapProvider.new ldap: { host: 'ldap' },
-															  auth: %w(cn=application,dc=imirhil,dc=fr password),
-															  uid: 'uid=%{uid},ou=people,dc=imirhil,dc=fr'
-
 	end
 end
