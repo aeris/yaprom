@@ -14,7 +14,7 @@ class GitRepo < ActiveRecord::Base
 	after_create :init_repo
 
 	def init_repo
-		Resque.enqueue ResqueTask::GitTask::InitRepository, self.id
+		SidekiqTask::GitTask::InitRepository.perform_async self.id
 	end
 
 	def clone_command

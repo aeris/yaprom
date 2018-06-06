@@ -14,17 +14,19 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Manage Yaprom daemons"
 NAME=yaprom
+RBENV_ROOT=/usr/local/rbenv
 SCRIPTNAME=/etc/init.d/$NAME
 YAPROM_DIR=/srv/www/imirhil.fr/forge
 GIT_PIDFILE=/var/run/yaprom-git.pid
-RESQUE=/usr/local/rbenv/shims/resque
+BUNDLE=$RBENV_ROOT/shims/bundle
+SIDEKIQ=$YAPROM_DIR/vendor/bundle/ruby/2.1.0/bin/sidekiq
 export RAILS_ENV=production
 
 . /lib/init/vars.sh
 . /lib/lsb/init-functions
 VERBOSE=true
 
-do_start_resque() {
+do_start_sidekiq() {
 	[ "$VERBOSE" != no ] && log_daemon_msg "Starting $NAME" "$3"
 	# Return
 	#   0 if daemon has been started
@@ -32,12 +34,12 @@ do_start_resque() {
 	#   2 if daemon could not be started
 	start-stop-daemon --start --quiet --pidfile $1 --make-pidfile \
 		--chdir $YAPROM_DIR --chuid $2 \
-		--exec $RESQUE --test > /dev/null
+		--exec $SIDEKIQ --test > /dev/null
 	RETVAL="$?"
 	if [ "$RETVAL" = "0" ]; then
 		start-stop-daemon --start --quiet --pidfile $1 --make-pidfile \
 			--chdir $YAPROM_DIR --chuid $2 --background \
-			--exec $RESQUE -- work --queues=$3
+			--exec $BUNDLE -- exec sidekiq -q $3
 		RETVAL="$?"
 	fi
 	case "$RETVAL" in
@@ -47,10 +49,10 @@ do_start_resque() {
 }
 
 do_start_git() {
-	do_start_resque $GIT_PIDFILE git:git git
+	do_start_sidekiq $GIT_PIDFILE git:git git
 }
 
-do_stop_resque() {
+do_stop_sidekiq() {
 	[ "$VERBOSE" != no ] && log_daemon_msg "Stopping $NAME" "$2"
 	start-stop-daemon --stop --quiet --oknodo --retry=0/30/KILL/5 --pidfile $1
 	RETVAL="$?"
@@ -63,10 +65,10 @@ do_stop_resque() {
 }
 
 do_stop_git() {
-	do_stop_resque $GIT_PIDFILE git
+	do_stop_sidekiq $GIT_PIDFILE git
 }
 
-do_status_resque() {
+do_status_sidekiq() {
 	[ "$VERBOSE" != no ] && log_daemon_msg "Status $NAME" "$2"
 	start-stop-daemon --status --quiet --oknodo --pidfile $1
 	RETVAL="$?"
@@ -77,7 +79,7 @@ do_status_resque() {
 }
 
 do_status_git() {
-	do_status_resque $GIT_PIDFILE git
+	do_status_sidekiq $GIT_PIDFILE git
 }
 
 case "$1" in
@@ -99,5 +101,3 @@ case "$1" in
 	exit 3
 	;;
 esac
-
-:

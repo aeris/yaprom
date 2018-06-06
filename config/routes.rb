@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Yaprom::Application.routes.draw do
 	namespace :admin do
 		get '/' => :index
@@ -31,5 +33,6 @@ Yaprom::Application.routes.draw do
 	end
 
 	#mount Resque::Server, at: '/resque'
+	mount Sidekiq::Web => '/sidekiq'
 	root to: 'site#index'
 end

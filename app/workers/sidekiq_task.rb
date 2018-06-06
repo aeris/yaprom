@@ -1,16 +1,16 @@
 require 'grit'
 
-module ResqueTask
-	class GitTask
+class SidekiqTask
+	include Sidekiq::Worker
+
+	class GitTask < SidekiqTask
+		sidekiq_options queue: :git
+
 		AUTHORIZED_KEYS = File.expand_path YamlConfig['git.authorized_keys']
 		FileUtils.mkdir_p GitRepo::DIRECTORY unless File.directory? GitRepo::DIRECTORY
 
-		def self.queue
-			:git
-		end
-
 		class InitRepository < GitTask
-			def self.perform id
+			def perform id
 				repo = GitRepo.find id
 				origin = repo.origin
 				if origin.nil?
@@ -24,7 +24,7 @@ module ResqueTask
 		end
 
 		class DeployKey < GitTask
-			def self.perform key
+			def perform key
 				open(AUTHORIZED_KEYS, 'a') do |f|
 					f.puts key
 				end
@@ -32,7 +32,7 @@ module ResqueTask
 		end
 
 		class UndeployKey < GitTask
-			def self.perform ref
+			def perform ref
 				system 'sed', '-i', "/\\s#{ref}$/d", AUTHORIZED_KEYS
 			end
 		end

@@ -1,21 +1,24 @@
-postgresql: &postgresql
-  adapter: postgresql
-  encoding: unicode
-  host: localhost
-  database: yaprom
-  username: yaprom
-  pool: 5
-
-test:
+sqlite: &sqlite
   adapter:  sqlite3
-  database: db/test.sqlite3
   pool:     5
   timeout:  5000
 
+postgresql: &postgresql
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  username: yaprom
+  database: yaprom
+
+test:
+  <<: *sqlite
+  database: db/test.sqlite3
+
 development:
-  <<: *postgresql
-  password: yaprom
+  <<: *sqlite
+  database: db/development.sqlite3
 
 production:
-  <<: *postgresql
-  password: ducVeumjiBliwacObgiHennEtKetjic2
+  <<: *sqlite
+  database: db/production.sqlite3

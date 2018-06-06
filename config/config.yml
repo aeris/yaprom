@@ -16,7 +16,7 @@ development:
 
 production:
   <<: *default
-  url: 'https://forge/'
+  url: 'http://forge/'
   git:
     repositories: '/srv/scm/git'
     authorized_keys: '/srv/scm/git/.ssh/authorized_keys'

@@ -88,7 +88,7 @@ begin
 	logger.debug "real repository: #{real_path}"
 	exec 'git-shell', '-c', "#{command} '#{real_path}'"
 rescue Exception => e
-	logger.error e.message
+	logger.error e.message unless logger.nil?
 	$stderr.puts e.message
 	exit! 1
 end

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	attr_accessible :uid, :common_name, :surname, :password, :password_confirmation, :email, :admin
 	attr_reader :name
 	has_many :projects, foreign_key: :owner_id
+	has_many :git_repos, foreign_key: :owner_id
 	has_many :ssh_keys
 
 	validates :uid, format: { with: /\A[a-z]+\z/ }, presence: true, uniqueness: true
@@ -33,5 +34,9 @@ class User < ActiveRecord::Base
 
 	def name
 		"#{self.common_name} #{self.surname}"
+	end
+
+	def participating_projects
+		self.git_repos.collect { |r| r.project } .uniq
 	end
 end

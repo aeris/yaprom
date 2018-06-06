@@ -12,5 +12,4 @@ class Admin::ProjectsController < AdminController
 			end
 		end
 	end
-
 end

@@ -5,11 +5,11 @@ class SshKey < ActiveRecord::Base
 	attr_accessible :base64, :comment, :fingerprint, :size, :key_type
 
 	after_create do
-		Resque.enqueue ResqueTask::GitTask::DeployKey, self.authorized_key
+		SidekiqTask::GitTask::DeployKey.perform_async self.authorized_key
 	end
 
 	after_destroy do
-		Resque.enqueue ResqueTask::GitTask::UndeployKey, self.ref
+		SidekiqTask::GitTask::UndeployKey.perform_async self.ref
 	end
 
 	class InvalidSshKeyException < Exception
@@ -23,7 +23,7 @@ class SshKey < ActiveRecord::Base
 	end
 
 	def command
-		"command='#{YAPROM_SSH} #{self.user.uid}',no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty"
+		"command=\"#{YAPROM_SSH} #{self.user.uid}\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty"
 	end
 
 	def authorized_key

@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 3.2'
 gem 'thin'
 
 gem 'pg'
+gem 'sqlite3'
 
 group :development do
 	gem 'better_errors'
@@ -14,15 +15,15 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-	gem 'sass-rails'
-	gem 'coffee-rails'
-	gem 'normalize-rails'
-	gem 'jquery-rails'
-	gem 'jquery-ui-rails'
-	gem 'bootstrap-sass'
-	gem 'font-awesome-rails'
+	gem 'sass-rails', '~> 3.2'
+	gem 'coffee-rails', '~> 3.2'
+	gem 'normalize-rails', '~> 2.0'
+	gem 'jquery-rails', '~> 2.2'
+	gem 'jquery-ui-rails', '~> 4.0'
+	gem 'bootstrap-sass', '~> 2.3'
+	gem 'font-awesome-rails', '~> 3.0'
 
-	gem 'therubyracer', :platforms => :ruby
+	gem 'therubyracer', platforms: :ruby
 	gem 'uglifier'
 end
 
@@ -30,7 +31,8 @@ gem 'net-ldap'
 gem 'net-ssh'
 gem 'multiple_table_inheritance'
 gem 'grit'
-gem 'resque', '~> 2.0.0.pre.1'
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: nil
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

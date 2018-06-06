@@ -14,7 +14,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		<% @me.projects.each do |project| %>
+		<% @me.participating_projects.each do |project| %>
 			<tr>
 				<td style="white-space: nowrap;">
 					<%= image_tag "#{project.scm}-tiny.png", alt: project.scm %>
